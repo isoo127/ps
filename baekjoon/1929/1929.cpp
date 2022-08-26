@@ -1,18 +1,17 @@
 #include <iostream>
-#include <cmath>
 #include <string>
 using namespace std;
 
-bool isPrime(int x) {
-    if(x < 2)
-        return false;
-    else {
-        for(int i = 2; i <= sqrt(x); i++) {
-            if(x % i == 0)
-                return false;
-        }
-        return true;
+const int SIZE = 1e6 + 1;
+bool nums[SIZE] = {true, true};
+
+void seize(int x) {
+    if(nums[x])
+        return;
+    for(int i = 2; i * x < SIZE; i++) {
+        nums[i * x] = true;
     }
+    return;
 }
 
 int main() {
@@ -21,8 +20,10 @@ int main() {
 
     string str = "";
 
-    for(int i = M; i <= N; i++) {
-        if(isPrime(i))
+    for(int i = 2; i <= N; i++) {
+        if(i * i <= N)
+            seize(i);
+        if(i >= M && !nums[i])
             str += to_string(i) + "\n";
     }
 
