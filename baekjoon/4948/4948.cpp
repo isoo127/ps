@@ -4,17 +4,17 @@ using namespace std;
 
 const int SIZE = 123456 * 2 + 1;
 bool nums[SIZE] = {true, true};
-int p[SIZE] = {2, 2};
+int p[SIZE];
 
 int main() {
-    int idx = 2;
+    int idx = 0;
     for(int i = 2; i < SIZE; i++) {
         if(!nums[i]) {
             for(int j = 2; j * i < SIZE; j++) {
                 nums[j * i] = true;
             }
             p[idx] = i;
-            idx = i;
+            idx++;
         }
     }
 
@@ -26,11 +26,11 @@ int main() {
             break;
 
         int cnt = 0;
-        int pos = 2;
-        while(pos <= input * 2) {
-            if(pos > input) 
+        int pos = 0;
+        while(p[pos] <= input * 2) {
+            if(p[pos] > input) 
                 cnt ++;
-            pos = p[pos];
+            pos++;
         }
         result += to_string(cnt) + "\n";
     }
