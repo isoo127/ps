@@ -15,7 +15,7 @@ int main() {
             if(text.at(j) == '(') stack++;
             else if(text.at(j) == ')')
                 if(stack > 0) stack--;
-                else { stack = - 1; break; }
+                else { stack = -1; break; }
         }
         if(stack == 0) result += "YES\n";
         else result += "NO\n";
